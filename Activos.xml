@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><data>
+    <categorias>
+        <categoria>
+            <Codigo>CAS</Codigo>
+            <Nombre>Casa</Nombre>
+            <Vida>58</Vida>
+        <Activo><Codigo>Dell</Codigo><Activo>sad</Activo><Fabricacion>221</Fabricacion><Valor>1000</Valor><Edad>1803</Edad><Depreciacion>30651</Depreciacion><ValorActual>-29651</ValorActual></Activo></categoria>
+        <categoria>
+            <Codigo>COM</Codigo>
+            <Nombre>Computadora</Nombre>
+            <Vida>5</Vida>
+        <Activo><Codigo>DELL</Codigo><Activo>Computadora</Activo><Fabricacion>2021</Fabricacion><Valor>1000000</Valor><Edad>3</Edad><Depreciacion>600000</Depreciacion><ValorActual>400000</ValorActual></Activo><Activo><Codigo>DELL</Codigo><Activo>Compu</Activo><Fabricacion>2020</Fabricacion><Valor>1000000</Valor><Edad>4</Edad><Depreciacion>800000</Depreciacion><ValorActual>200000</ValorActual></Activo></categoria>
+        <categoria>
+            <Codigo>VEH</Codigo>
+            <Nombre>Vehiculo</Nombre>
+            <Vida>20</Vida>
+        </categoria>
+    </categorias>
+</data>
