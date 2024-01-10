@@ -63,23 +63,24 @@ public class ActivosController {
         }
     }
     private void save() {
+        // Año actual
+        Calendar calendario = Calendar.getInstance();
+        int actualYear = calendario.get(Calendar.YEAR);
         Integer validationFabrication = validateTextField(view.getTxtFabrication().getText());
         Integer validationValue = validateTextField(view.getTxtValue().getText());
         if (validationFabrication == null) {
-            showMessage(view, "Complete la fabricación del activo únicamente con números", "error");
+            showMessage(view, "Complete la fabricación del activo únicamente con números", "error");//Valida que el año de fabricación sea solo números
         } else if (validationValue == null) {
-            showMessage(view, "Complete el valor del activo únicamente con números", "error");
+            showMessage(view, "Complete el valor del activo únicamente con números", "error"); //Valida que el valor sea solo números
         } else if (view.getTxtActive().getText().trim().isEmpty() || view.getTxtCode().getText().trim().isEmpty()
-                || view.getTxtFabrication().getText().trim().isEmpty() || view.getTxtValue().getText().trim().isEmpty()) {
+                || view.getTxtFabrication().getText().trim().isEmpty() || view.getTxtValue().getText().trim().isEmpty()) { //Valida espacios en blanco
             showMessage(view, "Error: Debe llenar todos los campos de texto.", "error");
+        } else if (Integer.parseInt(view.getTxtFabrication().getText()) > actualYear) { //Valida año correcto
+            showMessage(view, "Error: Debe ingresar un año de fabricación válido.", "error");
         } else {
             String category = (String) view.getCmbCategory().getSelectedItem();
             int fabricationYear = Integer.parseInt(view.getTxtFabrication().getText());
             int originalValue = Integer.parseInt(view.getTxtValue().getText());
-
-            // Año actual
-            Calendar calendario = Calendar.getInstance();
-            int actualYear = calendario.get(Calendar.YEAR);
 
             int age = actualYear - fabricationYear; // Años de antigüedad del activo
             int yearsOfCategory = Integer.parseInt(category.replaceAll("\\D+", "")); // Extraer el número de años de la categoría
