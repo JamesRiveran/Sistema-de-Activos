@@ -26,6 +26,7 @@ import org.xml.sax.SAXException;
  * @author james
  */
 public class ActivosController {
+
     static ActivosView view;
     private XMLData data;
     ActivosList activosList;
@@ -36,8 +37,8 @@ public class ActivosController {
         this.view.setView(this);
         this.activosList = new ActivosList();
     }
-    
-    public void startAplication(){
+
+    public void startAplication() {
         view.setLocationRelativeTo(null);
         view.setVisible(true);
         data = new XMLData();
@@ -47,14 +48,15 @@ public class ActivosController {
         for (String option : options) {
             view.getCmbCategory().addItem(option);
         }
-        view.getBtnSave().addActionListener(e->save());
-        view.getBtnClean().addActionListener(e->clean());
-        view.getBtnSearch().addActionListener(e->search());
+        view.getBtnSave().addActionListener(e -> save());
+        view.getBtnClean().addActionListener(e -> clean());
+        view.getBtnSearch().addActionListener(e -> search());
         view.getTxtAge().setEnabled(false);
         view.getTxtDepretiation().setEnabled(false);
         view.getTxtNewValue().setEnabled(false);
-        
+
     }
+
     public static void showMessage(JFrame parent, String message, String info) {
         if (info == "error") {
             JOptionPane.showMessageDialog(parent, message, "Validación", JOptionPane.ERROR_MESSAGE);
@@ -62,6 +64,7 @@ public class ActivosController {
             JOptionPane.showMessageDialog(parent, message, "Validación", JOptionPane.INFORMATION_MESSAGE);
         }
     }
+
     private void save() {
         // Año actual
         Calendar calendario = Calendar.getInstance();
@@ -116,17 +119,17 @@ public class ActivosController {
         view.getTxtNewValue().setText("");
         view.getTxtCode().setEnabled(true);
     }
-    
+
     private void search() {
-        
+
         String code = view.getTxtCode().getText();
         String category = (String) view.getCmbCategory().getSelectedItem();
         String categoryName = category.split("\\s+\\(")[0];
-        if(code.trim().isEmpty()){
+        if (code.trim().isEmpty()) {
             showMessage(view, "Ingrese el código del activo que desea buscar", "error");
-        }else{
-            List<String> activoData = XMLData.search(filePath, categoryName, code);   
-            if(activoData !=null){
+        } else {
+            List<String> activoData = XMLData.search(filePath, categoryName, code);
+            if (activoData != null) {
                 view.getTxtCode().setEnabled(false);
                 String active = activoData.get(0);
                 String fabrication = activoData.get(1);
@@ -134,39 +137,39 @@ public class ActivosController {
                 String age = activoData.get(3);
                 String depretiation = activoData.get(4);
                 String newValue = activoData.get(5);
-                
-                
+
                 view.getTxtActive().setText(active);
                 view.getTxtFabrication().setText(fabrication);
                 view.getTxtValue().setText(value);
                 view.getTxtAge().setText(age);
                 view.getTxtDepretiation().setText(depretiation);
                 view.getTxtNewValue().setText(newValue);
-            }else{
+            } else {
                 showMessage(view, "Activo no encontrado con ese código", "error");
             }
         }
-       
+
     }
-    
+
     public static Integer validateTextField(String text) {
-    
 
-    // Utiliza una expresión regular para verificar si el texto contiene solo números
-    Pattern pattern = Pattern.compile("^[0-9]+$");
-    Matcher matcher = pattern.matcher(text);
+        // Utiliza una expresión regular para verificar si el texto contiene solo números
+        Pattern pattern = Pattern.compile("^[0-9]+$");
+        Matcher matcher = pattern.matcher(text);
 
-    if (matcher.matches()) {
-        // El texto contiene solo números, lo convertimos a un entero y lo retornamos
-        try {
-            return Integer.parseInt(text);
-        } catch (NumberFormatException e) {
-            // Si el texto no se puede convertir a un entero, retorna null
+        if (matcher.matches()) {
+            // El texto contiene solo números, lo convertimos a un entero y lo retornamos
+            try {
+                return Integer.parseInt(text);
+            } catch (NumberFormatException e) {
+                // Si el texto no se puede convertir a un entero, retorna null
+                return null;
+            }
+        } else {
+            // El texto contiene caracteres que no son números, retorna null
             return null;
         }
-    } else {
-        // El texto contiene caracteres que no son números, retorna null
-        return null;
     }
-}
+
+    
 }

@@ -7,6 +7,7 @@ package View;
 import Controller.ActivosController;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -20,9 +21,11 @@ public class ActivosView extends javax.swing.JFrame {
      */
     public ActivosView() {
         initComponents();
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }
     
     ActivosController view;
+    ActivosView activosView;
 
     public ActivosController getView() {
         return view;
@@ -123,7 +126,15 @@ public class ActivosView extends javax.swing.JFrame {
     }
     
     
-    
+    public void close() {
+        String botones[] = {"Cerrar", "Cancelar"};
+        int eleccion = JOptionPane.showOptionDialog(this, "¿Desea cerrar la aplicación?", "Cerrar", 0, 0, null, botones, this);
+        if (eleccion == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        } else if (eleccion == JOptionPane.NO_OPTION) {
+
+        }
+    }
     
     
 
@@ -159,6 +170,11 @@ public class ActivosView extends javax.swing.JFrame {
         btnSave = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setText("Código");
 
@@ -312,6 +328,10 @@ public class ActivosView extends javax.swing.JFrame {
     private void cmbCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCategoryActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbCategoryActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+       close();
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
