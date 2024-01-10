@@ -145,7 +145,7 @@ public class ActivosController {
                 view.getTxtDepretiation().setText(depretiation);
                 view.getTxtNewValue().setText(newValue);
             } else {
-                showMessage(view, "Activo no encontrado con ese código", "error");
+                showMessage(view, "Modifique el código o la categoría", "error");
             }
         }
 
