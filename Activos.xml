@@ -4,7 +4,7 @@
             <Codigo>CAS</Codigo>
             <Nombre>Casa</Nombre>
             <Vida>58</Vida>
-        <Activo><Codigo>DELL</Codigo><Activo>DAD BEST</Activo><Fabricacion>2024</Fabricacion><Valor>100000</Valor><Edad>0</Edad><Depreciacion>0</Depreciacion><ValorActual>100000</ValorActual></Activo><Activo><Codigo>212151</Codigo><Activo>saf</Activo><Fabricacion>1900</Fabricacion><Valor>10000000</Valor><Edad>124</Edad><Depreciacion>21379212</Depreciacion><ValorActual>-11379212</ValorActual></Activo></categoria>
+        <Activo><Codigo>DELL</Codigo><Activo>DAD BEST</Activo><Fabricacion>2023</Fabricacion><Valor>100000</Valor><Edad>1</Edad><Depreciacion>1724</Depreciacion><ValorActual>98276</ValorActual></Activo><Activo><Codigo>212151</Codigo><Activo>saf</Activo><Fabricacion>1900</Fabricacion><Valor>10000000</Valor><Edad>124</Edad><Depreciacion>21379212</Depreciacion><ValorActual>-11379212</ValorActual></Activo></categoria>
         <categoria>
             <Codigo>COM</Codigo>
             <Nombre>Computadora</Nombre>
@@ -14,6 +14,6 @@
             <Codigo>VEH</Codigo>
             <Nombre>Vehiculo</Nombre>
             <Vida>20</Vida>
-        </categoria>
+        <Activo><Codigo>DELL</Codigo><Activo>DAD BEST</Activo><Fabricacion>2023</Fabricacion><Valor>100000</Valor><Edad>1</Edad><Depreciacion>1724</Depreciacion><ValorActual>98276</ValorActual></Activo><Activo><Codigo>JAMES</Codigo><Activo>Persona</Activo><Fabricacion>2000</Fabricacion><Valor>150000000</Valor><Edad>24</Edad><Depreciacion>180000000</Depreciacion><ValorActual>-30000000</ValorActual></Activo></categoria>
     </categorias>
 </data>

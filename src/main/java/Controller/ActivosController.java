@@ -110,6 +110,7 @@ public class ActivosController {
             activosList.getList().clear();
             }else if (isSearch){
             XMLData.update(filePath, category, activosList.getList());
+            activosList.getList().clear();
             isSearch=false;
             }
         }
@@ -124,6 +125,7 @@ public class ActivosController {
         view.getTxtDepretiation().setText("");
         view.getTxtNewValue().setText("");
         view.getTxtCode().setEnabled(true);
+        isSearch=false;
     }
 
     private void search() {
