@@ -31,6 +31,7 @@ public class ActivosController {
     private XMLData data;
     ActivosList activosList;
     String filePath = "Activos.xml";
+    private static boolean isSearch = false;
 
     public ActivosController() {
         this.view = new ActivosView();
@@ -102,10 +103,15 @@ public class ActivosController {
                     originalValue, age, category,
                     depreciation,
                     newValue);
-
+            
             activosList.getList().add(newActivos);
+            if (!isSearch){
             XMLData.save(filePath, category, activosList.getList());
             activosList.getList().clear();
+            }else if (isSearch){
+            XMLData.update(filePath, category, activosList.getList());
+            isSearch=false;
+            }
         }
     }
 
@@ -121,7 +127,7 @@ public class ActivosController {
     }
 
     private void search() {
-
+        isSearch=true;
         String code = view.getTxtCode().getText();
         String category = (String) view.getCmbCategory().getSelectedItem();
         String categoryName = category.split("\\s+\\(")[0];

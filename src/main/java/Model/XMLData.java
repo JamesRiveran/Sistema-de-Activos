@@ -135,9 +135,8 @@ public class XMLData {
         }
         return opciones;
     }
-
-public static void save(String filePath, String categoriaSeleccionada, List<ActivosModel> instrumentList) {
-    // Verificar si la lista de instrumentos es válida
+public static void update (String filePath, String categoriaSeleccionada, List<ActivosModel> instrumentList){
+     // Verificar si la lista de instrumentos es válida
     if (instrumentList == null || instrumentList.isEmpty()) {
         throw new IllegalArgumentException("La lista de instrumentos no puede ser nula ni estar vacía");
     }
@@ -157,38 +156,9 @@ public static void save(String filePath, String categoriaSeleccionada, List<Acti
             // Buscar la categoría existente por el nombre
             Element categoriaElement = findCategoryByName(instruments, categoriaSeleccionada);
             Element activoElement = findActivoByCode(categoriaElement, instrument.getCode());
-
-            if (activoElement == null) {
-                // El activo no existe, crear un nuevo elemento "activo" y agregar los datos
-                activoElement = doc.createElement("Activo");
-
-                Element codigo = doc.createElement("Codigo");
-                codigo.setTextContent(instrument.getCode());
-                Element nombre = doc.createElement("Activo");
-                nombre.setTextContent(instrument.getActive());
-                Element fabricacion = doc.createElement("Fabricacion");
-                fabricacion.setTextContent(String.valueOf(instrument.getFabrication()));
-                Element valor = doc.createElement("Valor");
-                valor.setTextContent(String.valueOf(instrument.getValue()));
-                Element edad = doc.createElement("Edad");
-                edad.setTextContent(String.valueOf(instrument.getAge()));
-                Element depreciacion = doc.createElement("Depreciacion");
-                depreciacion.setTextContent(String.valueOf(instrument.getDepreciation()));
-                Element valorActual = doc.createElement("ValorActual");
-                valorActual.setTextContent(String.valueOf(instrument.getNewValue()));
-
-                activoElement.appendChild(codigo);
-                activoElement.appendChild(nombre);
-                activoElement.appendChild(fabricacion);
-                activoElement.appendChild(valor);
-                activoElement.appendChild(edad);
-                activoElement.appendChild(depreciacion);
-                activoElement.appendChild(valorActual);
-
-                categoriaElement.appendChild(activoElement);
-                showMessage(view, "Activo añadido en la categoría '" + categoriaSeleccionada + "' en el archivo XML.", "success");
-            } else {
-                // El activo ya existe, actualizar los datos excepto el código
+            
+            if (activoElement != null) {
+                //El activo ya existe, actualizar los datos excepto el código
                 Element nombre = (Element) activoElement.getElementsByTagName("Activo").item(0);
                 Element fabricacion = (Element) activoElement.getElementsByTagName("Fabricacion").item(0);
                 Element valor = (Element) activoElement.getElementsByTagName("Valor").item(0);
@@ -205,7 +175,7 @@ public static void save(String filePath, String categoriaSeleccionada, List<Acti
                 showMessage(view, "Activo actualizado en la categoría '" + categoriaSeleccionada + "' en el archivo XML.", "success");
             }
 
-            // Guardar el documento actualizado en el archivo
+//             Guardar el documento actualizado en el archivo
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(doc);
@@ -219,6 +189,82 @@ public static void save(String filePath, String categoriaSeleccionada, List<Acti
         e.printStackTrace();
     }
 }
+    public static void save(String filePath, String categoriaSeleccionada, List<ActivosModel> instrumentList) {
+        // Verificar si la lista de instrumentos es válida
+        if (instrumentList == null || instrumentList.isEmpty()) {
+            throw new IllegalArgumentException("La lista de instrumentos no puede ser nula ni estar vacía");
+        }
+
+        try {
+            Document doc;
+
+            // Verificar si el archivo ya existe
+            File file = new File(filePath);
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            doc = builder.parse(file);
+
+            Element instruments = doc.getDocumentElement();
+            // Agregar o actualizar los nuevos instrumentos
+            for (ActivosModel instrument : instrumentList) {
+                // Buscar la categoría existente por el nombre
+                Element categoriaElement = findCategoryByName(instruments, categoriaSeleccionada);
+                Element activoElement = findActivoByCode(categoriaElement, instrument.getCode());
+
+                if (activoElement == null) {
+                    // El activo no existe, crear un nuevo elemento "activo" y agregar los datos
+                    activoElement = doc.createElement("Activo");
+
+                    Element codigo = doc.createElement("Codigo");
+                    codigo.setTextContent(instrument.getCode());
+                    Element nombre = doc.createElement("Activo");
+                    nombre.setTextContent(instrument.getActive());
+                    Element fabricacion = doc.createElement("Fabricacion");
+                    fabricacion.setTextContent(String.valueOf(instrument.getFabrication()));
+                    Element valor = doc.createElement("Valor");
+                    valor.setTextContent(String.valueOf(instrument.getValue()));
+                    Element edad = doc.createElement("Edad");
+                    edad.setTextContent(String.valueOf(instrument.getAge()));
+                    Element depreciacion = doc.createElement("Depreciacion");
+                    depreciacion.setTextContent(String.valueOf(instrument.getDepreciation()));
+                    Element valorActual = doc.createElement("ValorActual");
+                    valorActual.setTextContent(String.valueOf(instrument.getNewValue()));
+
+                    activoElement.appendChild(codigo);
+                    activoElement.appendChild(nombre);
+                    activoElement.appendChild(fabricacion);
+                    activoElement.appendChild(valor);
+                    activoElement.appendChild(edad);
+                    activoElement.appendChild(depreciacion);
+                    activoElement.appendChild(valorActual);
+
+                    categoriaElement.appendChild(activoElement);
+                    // Guardar el documento actualizado en el archivo
+                    TransformerFactory transformerFactory = TransformerFactory.newInstance();
+                    Transformer transformer = null;
+                    try {
+                        transformer = transformerFactory.newTransformer();
+                    } catch (TransformerConfigurationException ex) {
+                        Logger.getLogger(XMLData.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    DOMSource source = new DOMSource(doc);
+                    StreamResult result = new StreamResult(new File(filePath));
+                    try {
+                        transformer.transform(source, result);
+                    } catch (TransformerException ex) {
+                        Logger.getLogger(XMLData.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                    ActivosController.clean();
+                    showMessage(view, "Activo añadido en la categoría '" + categoriaSeleccionada + "' en el archivo XML.", "success");
+                } else {
+                    showMessage(view, "Activo existente, consulte primero para modificar", "error");
+                }
+            }
+        } catch (ParserConfigurationException | IOException | SAXException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     private static Element findCategoryByName(Element instruments, String categoryName) {
