@@ -125,6 +125,7 @@ public class ActivosController {
         view.getTxtDepretiation().setText("");
         view.getTxtNewValue().setText("");
         view.getTxtCode().setEnabled(true);
+        view.getCmbCategory().setSelectedIndex(0);
         isSearch=false;
     }
 

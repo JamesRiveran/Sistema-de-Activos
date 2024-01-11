@@ -4,16 +4,16 @@
             <Codigo>CAS</Codigo>
             <Nombre>Casa</Nombre>
             <Vida>58</Vida>
-        <Activo><Codigo>DELL</Codigo><Activo>DAD BEST</Activo><Fabricacion>2023</Fabricacion><Valor>100000</Valor><Edad>1</Edad><Depreciacion>1724</Depreciacion><ValorActual>98276</ValorActual></Activo><Activo><Codigo>212151</Codigo><Activo>saf</Activo><Fabricacion>1900</Fabricacion><Valor>10000000</Valor><Edad>124</Edad><Depreciacion>21379212</Depreciacion><ValorActual>-11379212</ValorActual></Activo></categoria>
+        <Activo><Codigo>CEMENTO</Codigo><Activo>Casa</Activo><Fabricacion>2018</Fabricacion><Valor>15000000</Valor><Edad>6</Edad><Depreciacion>1551720</Depreciacion><ValorActual>13448280</ValorActual></Activo></categoria>
         <categoria>
             <Codigo>COM</Codigo>
             <Nombre>Computadora</Nombre>
             <Vida>5</Vida>
-        <Activo><Codigo>DELL231</Codigo><Activo>PC ADMI</Activo><Fabricacion>2021</Fabricacion><Valor>1000000</Valor><Edad>3</Edad><Depreciacion>600000</Depreciacion><ValorActual>400000</ValorActual></Activo><Activo><Codigo>DELL</Codigo><Activo>SDA</Activo><Fabricacion>100</Fabricacion><Valor>102100</Valor><Edad>1924</Edad><Depreciacion>39288080</Depreciacion><ValorActual>-39185980</ValorActual></Activo></categoria>
+        <Activo><Codigo>DELL</Codigo><Activo>PC</Activo><Fabricacion>2019</Fabricacion><Valor>1000000</Valor><Edad>5</Edad><Depreciacion>1000000</Depreciacion><ValorActual>0</ValorActual></Activo></categoria>
         <categoria>
             <Codigo>VEH</Codigo>
             <Nombre>Vehiculo</Nombre>
             <Vida>20</Vida>
-        <Activo><Codigo>DELL</Codigo><Activo>DAD BEST</Activo><Fabricacion>2023</Fabricacion><Valor>100000</Valor><Edad>1</Edad><Depreciacion>1724</Depreciacion><ValorActual>98276</ValorActual></Activo><Activo><Codigo>JAMES</Codigo><Activo>Persona</Activo><Fabricacion>2000</Fabricacion><Valor>150000000</Valor><Edad>24</Edad><Depreciacion>180000000</Depreciacion><ValorActual>-30000000</ValorActual></Activo></categoria>
+        </categoria>
     </categorias>
 </data>
